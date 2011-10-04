@@ -1,0 +1,209 @@
+{
+"link": "http://api.europeana.eu/api/opensearch.json?searchTerms=mozart&startPage=1",
+"description": "mozart - Europeana Open Search",
+"totalResults": 6208,
+"startIndex": 0,
+"itemsPerPage": 12,
+"items": [
+{
+"title": "Leopold & Wolfgang Mozart"
+,"link": "http://www.europeana.eu/portal/record/09405a/05500F49B9900FE94803BAC79182C39DBD0EBF4D.srw?wskey=IAVQBBDOQQ"
+,"description": "Austrian School Æ;CultureGrid"
+,"enclosure": "http://www.peoplesnetwork.gov.uk/dpp/resource/2385950/stream/thumbnail_image_jpeg"
+,"europeana:year": " "
+,"europeana:language": "en"
+,"europeana:type": "IMAGE"
+,"europeana:provider": "CultureGrid"
+,"europeana:dataProvider": " "
+,"europeana:rights": " "
+},
+{
+"title": "Beethoven-Haydn-Mozart-Denkmal"
+,"link": "http://www.europeana.eu/portal/record/09428/A61996E6373713211C325D0127F37DA5243557DF.srw?wskey=IAVQBBDOQQ"
+,"description": "45info.com;EuropeanaLocal Deutschland"
+,"enclosure": "http://de.45info.com/search/firstImageEuropeana?title=Beethoven-Haydn-Mozart-Denkmal"
+,"europeana:year": " "
+,"europeana:language": "de"
+,"europeana:type": "VIDEO"
+,"europeana:provider": "EuropeanaLocal Deutschland"
+,"europeana:dataProvider": "45info.com"
+,"europeana:rights": "http://creativecommons.org/licenses/by-sa/3.0/"
+},
+{
+"title": "BRASSENS AU SERVICE DE MOZART"
+,"link": "http://www.europeana.eu/portal/record/04802/0D75FB6A80F46436605A328D37502E4966AEF4F2.srw?wskey=IAVQBBDOQQ"
+,"description": "Georges Brassens;Institut National de l'Audiovisuel"
+,"enclosure": "http://www.ina.fr/images_v2/320x240/CAF86014603.jpeg"
+,"europeana:year": " "
+,"europeana:language": "fr"
+,"europeana:type": "VIDEO"
+,"europeana:provider": "Institut National de l'Audiovisuel"
+,"europeana:dataProvider": "Institut National de l'Audiovisuel"
+,"europeana:rights": " "
+},
+{
+"title": "Mozart plays for Lord Fortrose, at his home in Naples"
+,"link": "http://www.europeana.eu/portal/record/00401/DDC57884DC33D41E80E2D3465E22E1BDD349D1F3.srw?wskey=IAVQBBDOQQ"
+,"description": "Scottish National Portrait Gallery;Scran"
+,"enclosure": "http://images.scran.ac.uk/RB/images/thumb/0205/02050068.jpg"
+,"europeana:year": " "
+,"europeana:language": "en"
+,"europeana:type": "IMAGE"
+,"europeana:provider": "Scran"
+,"europeana:dataProvider": " "
+,"europeana:rights": "http://www.europeana.eu/rights/rr-p/"
+,"enrichment:period_term": [
+"http://semium.org/time/1771"
+]
+,"enrichment:period_label": [
+"1771"
+]
+,"enrichment:period_begin": "Jan 1, 1771 1:00:00 AM"
+,"enrichment:period_end": "Jan 1, 1772 12:59:59 AM"
+},
+{
+"title": "Mein erstes Schreiben vom 20ten diss aus Maÿland wirst du erhalten haben. Den nämlichen Posttag habe auch an Se : Hochf[ürstliche] Gnaden geschrieben. Gib mir Nachricht, ob Se : Hochf : Gd : solchen erhalten haben, du wirst sonder Zweifl solches bald erfahren. Wir sind gott lob gesund [ : par Leopold Mozart](...) Allerliebsteschwester ! Du weist das ich ein groser schäzer und auch als der Jenige dich verlassen habe, (...) Nun habe ich zu schreiben für die opera es ist mir von herzen leid das ich dich wegen der verlangten enuetti nicht bedienen kan [ : par Wolfgang Amadeus Mozart] (...)"
+,"link": "http://www.europeana.eu/portal/record/07404/9046D7B88F0F089C8CAF830DF01A54A4B3ADB0C4.srw?wskey=IAVQBBDOQQ"
+,"description": "Mozart, Wofgang Amadeus;1770;Musee Royal de Mariemont"
+,"enclosure": "http://www.musee-mariemont.be/oai/autographes/Lettres musiciens ADLIB/1120.5a.1.jpg"
+,"europeana:year": "1770"
+,"europeana:language": "mul"
+,"europeana:type": "IMAGE"
+,"europeana:provider": "Musee Royal de Mariemont"
+,"europeana:dataProvider": " "
+,"europeana:rights": " "
+,"enrichment:period_term": [
+"http://semium.org/time/1770"
+]
+,"enrichment:period_label": [
+"1770"
+]
+,"enrichment:period_begin": "Jan 1, 1770 1:00:00 AM"
+,"enrichment:period_end": "Jan 1, 1771 12:59:59 AM"
+},
+{
+"title": "Scharff, Anton: Wolfgang Amadeus Mozart"
+,"link": "http://www.europeana.eu/portal/record/08535/81616AA82E6C050433070D0B190C59C2D7C2F851.srw?wskey=IAVQBBDOQQ"
+,"description": "1896;Athena"
+,"enclosure": "http://www.smb.museum/mk_edit/images/5769/vs_opt.jpg"
+,"europeana:year": "1896"
+,"europeana:language": "de"
+,"europeana:type": "IMAGE"
+,"europeana:provider": "Athena"
+,"europeana:dataProvider": "Münzkabinett der Staatlichen Museen zu Berlin - Preußischer Kulturbesitz"
+,"europeana:rights": " "
+},
+{
+"title": "Notizen"
+,"link": "http://www.europeana.eu/portal/record/08547/D11F3E89F3EEBFA878435F7F99CDA36627B81C2C.srw?wskey=IAVQBBDOQQ"
+,"description": "1829;Athena"
+,"enclosure": "http://museum.zib.de/sgml_internet/img.php?img=z0062682&width=300"
+,"europeana:year": "1829"
+,"europeana:language": "de"
+,"europeana:type": "TEXT"
+,"europeana:provider": "Athena"
+,"europeana:dataProvider": "Stadtgeschichtliches Museum Leipzig"
+,"europeana:rights": " "
+},
+{
+"title": "[Mozart / Commémoration + duplex Bartoli]"
+,"link": "http://www.europeana.eu/portal/record/04802/84CF91993DD0246E7531EE4679477321A9ED13C3.srw?wskey=IAVQBBDOQQ"
+,"description": "Cecilia Bartoli;Institut National de l'Audiovisuel"
+,"enclosure": "http://www.ina.fr/images_v2/320x240/3017638001034.jpeg"
+,"europeana:year": " "
+,"europeana:language": "fr"
+,"europeana:type": "VIDEO"
+,"europeana:provider": "Institut National de l'Audiovisuel"
+,"europeana:dataProvider": "Institut National de l'Audiovisuel"
+,"europeana:rights": " "
+},
+{
+"title": "A Monsieur Monsieur Leopold de Mozart, Maître de la chapelle de S : A : R :, l'archevecque de et a, Salsbourg"
+,"link": "http://www.europeana.eu/portal/record/07404/81888F75E232592F89A5C5C315759F14637FA1DE.srw?wskey=IAVQBBDOQQ"
+,"description": "Mozart, Wofgang Amadeus;Musee Royal de Mariemont"
+,"enclosure": "http://www.musee-mariemont.be/oai/autographes/Lettres musiciens ADLIB/1120.5b.jpg"
+,"europeana:year": " "
+,"europeana:language": "mul"
+,"europeana:type": "IMAGE"
+,"europeana:provider": "Musee Royal de Mariemont"
+,"europeana:dataProvider": " "
+,"europeana:rights": " "
+},
+{
+"title": "Requiem KV 626"
+,"link": "http://www.europeana.eu/portal/record/92002/61F0951B448A196DCC5A41A648DFC2DD97697175.srw?wskey=IAVQBBDOQQ"
+,"description": "Mozart, Wolfgang Amadeus;1791;The European Library"
+,"enclosure": "http://search.theeuropeanlibrary.org/images/treasure/treasure-5_t.gif"
+,"europeana:year": "1791"
+,"europeana:language": "mul"
+,"europeana:type": "IMAGE"
+,"europeana:provider": "The European Library"
+,"europeana:dataProvider": " "
+,"europeana:rights": " "
+,"enrichment:period_term": [
+"http://semium.org/time/1791"
+]
+,"enrichment:period_label": [
+"1791"
+]
+,"enrichment:period_begin": "Jan 1, 1791 1:00:00 AM"
+,"enrichment:period_end": "Jan 1, 1792 12:59:59 AM"
+,"enrichment:concept_term": [
+"http://www.eionet.europa.eu/gemet/concept/5449"
+]
+,"enrichment:concept_label": [
+"música",
+"music",
+"muziek",
+"musikk",
+"музыка",
+"音乐",
+"hudba",
+"musik",
+"muusika",
+"musiikki",
+"muzika",
+"zene",
+"musica",
+"glasba",
+"musique",
+"muzică",
+"muzyka",
+"μουσική",
+"музика"
+]
+},
+{
+"title": "Wolfgang Amadeus Mozart"
+,"link": "http://www.europeana.eu/portal/record/08536/D3469A5633042E6882DC6998D524475E95D8B613.srw?wskey=IAVQBBDOQQ"
+,"description": "Athena"
+,"enclosure": "http://heidicon.ub.uni-heidelberg.de/cgi-bin/europeana.cgi?icon=13970&big=1"
+,"europeana:year": " "
+,"europeana:language": "de"
+,"europeana:type": "IMAGE"
+,"europeana:provider": "Athena"
+,"europeana:dataProvider": "BAM Portal / Universitätsbibliothek Heidelberg"
+,"europeana:rights": " "
+},
+{
+"title": "Mozart Herdenking in Vlaanderen Title Translation: Mozart Commemoration in Flanders VADS Collection: Imperial War Museum: Posters of Conflict - The Visual Culture of Public Information and Counter Information"
+,"link": "http://www.europeana.eu/portal/record/09405a/3E673E807C9CE89789C72FCE502720C2136C4B14.srw?wskey=IAVQBBDOQQ"
+,"description": "Degouy, N Printer: Steenlandt PVBA, Brussel Publisher/Sponsor: Steenlandt PVBA, Brussel Associated Person: Mozart, Wolfgang Amadeus;1942;CultureGrid"
+,"enclosure": "http://www.peoplesnetwork.gov.uk/dpp/resource/2347948/stream/thumbnail_image_jpeg"
+,"europeana:year": "1942"
+,"europeana:language": "en"
+,"europeana:type": "IMAGE"
+,"europeana:provider": "CultureGrid"
+,"europeana:dataProvider": " "
+,"europeana:rights": " "
+,"enrichment:period_term": [
+"http://semium.org/time/1942"
+]
+,"enrichment:period_label": [
+"1942"
+]
+,"enrichment:period_begin": "Jan 1, 1942 2:00:00 AM"
+,"enrichment:period_end": "Jan 1, 1943 12:59:59 AM"
+}
+]
+}
