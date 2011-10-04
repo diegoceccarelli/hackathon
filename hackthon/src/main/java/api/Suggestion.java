@@ -33,6 +33,7 @@ import org.apache.solr.common.SolrDocumentList;
 import util.SuggestionProperties;
 
 import domain.EuropeanaEntity;
+import domain.EuropeanaEntityMapper;
 
 /**
  * @author Diego Ceccarelli <diego.ceccarelli@isti.cnr.it>
@@ -55,6 +56,17 @@ public class Suggestion {
 		if (sugg == null) sugg = new Suggestion();
 		return sugg;
 	}
+	
+	public List<EuropeanaEntity> getSuggestedEntities(String query){
+		if (query == null ) return null;
+		List<EuropeanaEntity> suggestedEntities = new ArrayList<EuropeanaEntity>();
+		for (String q : getSuggestion(query)){
+			EuropeanaEntity ee = EuropeanaEntityMapper.getInstanceFromQuery(q);
+			suggestedEntities.add(ee);
+		}
+		return suggestedEntities;
+	}
+	
 	
 	public List<String> getSuggestion(String query){
 		SolrQuery solrQuery = new SolrQuery();
