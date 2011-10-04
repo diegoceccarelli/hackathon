@@ -115,6 +115,7 @@ public class Freebase implements Entity {
 	 *            the guid to set
 	 */
 	public void setGuid(String guid) {
+		
 		this.guid = guid;
 	}
 

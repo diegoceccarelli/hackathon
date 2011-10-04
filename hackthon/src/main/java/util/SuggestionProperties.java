@@ -85,9 +85,10 @@ public class SuggestionProperties {
 	}
 
 	public String getProperty(String key) {
-		logger.info("loading property {} from {} {}", key,
-				PROPERTIES_FILE);
-		return properties.getProperty(key);
+		String value = properties.getProperty(key);
+		logger.info("loading property {} = {}", key,
+				value);
+		return value;
 	}
 
 	
