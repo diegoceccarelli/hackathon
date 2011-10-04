@@ -13,34 +13,26 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package api;
+package domain;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
-import java.util.Map;
-
 import org.junit.Test;
 
-import api.Suggestion.SuggestedItem;
+import domain.GoogleQuery2Entity.Result;
 
 /**
  * @author Diego Ceccarelli <diego.ceccarelli@isti.cnr.it>
  *
  */
-public class SuggestionTest {
+public class GoogleTest {
 
 	@Test
-	public void test() {
-		Suggestion s = Suggestion.getInstance();
-		List<String> suggestions = s.getSuggestion("leonardo da vinci");
-		for (String sugg : suggestions)
-				System.out.println(sugg);
-				
-		List<SuggestedItem> res = s.filterSuggestions("leonardo da vinci", suggestions);
-		for (SuggestedItem item : res){
-			System.out.println(item.getLabel()+"\t"+item.getExplain());
+	public void test() throws InterruptedException {
+		GoogleQuery2Entity gq = new GoogleQuery2Entity();
+		for (Result r : gq.getResults("http://www.google.com/search?hl=en&source=hp&biw=887&bih=508&q=mozart+haydn+site:wikipedia.org")){
+			System.out.println(r);
 		}
+	
 	}
-
 }

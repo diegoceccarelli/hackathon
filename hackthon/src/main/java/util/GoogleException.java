@@ -13,34 +13,20 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package api;
-
-import static org.junit.Assert.*;
-
-import java.util.List;
-import java.util.Map;
-
-import org.junit.Test;
-
-import api.Suggestion.SuggestedItem;
+package util;
 
 /**
  * @author Diego Ceccarelli <diego.ceccarelli@isti.cnr.it>
  *
  */
-public class SuggestionTest {
-
-	@Test
-	public void test() {
-		Suggestion s = Suggestion.getInstance();
-		List<String> suggestions = s.getSuggestion("leonardo da vinci");
-		for (String sugg : suggestions)
-				System.out.println(sugg);
-				
-		List<SuggestedItem> res = s.filterSuggestions("leonardo da vinci", suggestions);
-		for (SuggestedItem item : res){
-			System.out.println(item.getLabel()+"\t"+item.getExplain());
-		}
+public class GoogleException extends Exception {
+	
+	public GoogleException(){
+		super();
 	}
-
+	public GoogleException(String msg){
+		super(msg);
+	}
+	
+	
 }

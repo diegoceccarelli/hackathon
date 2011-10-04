@@ -18,9 +18,14 @@ package api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServer;
@@ -34,6 +39,8 @@ import util.SuggestionProperties;
 
 import domain.EuropeanaEntity;
 import domain.EuropeanaEntityMapper;
+import domain.GoogleQuery2Entity;
+import domain.GoogleQuery2Entity.Result;
 
 /**
  * @author Diego Ceccarelli <diego.ceccarelli@isti.cnr.it>
@@ -60,11 +67,49 @@ public class Suggestion {
 	public List<EuropeanaEntity> getSuggestedEntities(String query){
 		if (query == null ) return null;
 		List<EuropeanaEntity> suggestedEntities = new ArrayList<EuropeanaEntity>();
-		for (String q : getSuggestion(query)){
-			EuropeanaEntity ee = EuropeanaEntityMapper.getInstanceFromQuery(q);
+		List<SuggestedItem> sugg = filterSuggestions(query, getSuggestion(query)); 
+		for (SuggestedItem si : sugg ){
+			if (!si.getLabel().isEmpty()){
+			EuropeanaEntity ee = EuropeanaEntityMapper.getInstanceFromQuery(si.getLabel());
+			ee.setExplaination(si.getExplain());
 			suggestedEntities.add(ee);
+			}
 		}
 		return suggestedEntities;
+	}
+	
+	public List<SuggestedItem> filterSuggestions(String query,List<String> suggestion){
+		String[] explaination = new String[suggestion.size()];
+		CleanerSuggestionThread[] cst = new CleanerSuggestionThread[suggestion.size()];
+		for (int i = 0; i < suggestion.size(); i++){
+			try {
+				cst[i] = new CleanerSuggestionThread(suggestion,explaination,query, i);
+			} catch (IOException e) {
+			}
+			cst[i].start();
+			try{
+				Thread.sleep(50);
+			}
+			catch(Exception e){
+				
+			}
+			
+		}
+		for (int i = 0; i < suggestion.size(); i++){
+			try {
+				if (cst[i] != null)
+					cst[i].join();
+			} catch (InterruptedException e) {
+				
+			}
+		}
+		List<SuggestedItem> cleanSuggestion = new ArrayList<SuggestedItem>();
+		for (int i = 0; i < suggestion.size(); i++){
+			if (!suggestion.get(i).isEmpty()){
+				cleanSuggestion.add(new SuggestedItem(suggestion.get(i), explaination[i]));
+			}
+		}
+		return cleanSuggestion;
 	}
 	
 	
@@ -113,5 +158,95 @@ public class Suggestion {
 		}
 		return server;
 
+	}
+	
+	public class SuggestedItem{
+		public String label; 
+		public String explain;
+		/**
+		 * @return the label
+		 */
+		public String getLabel() {
+			return label;
+		}
+		/**
+		 * @param label the label to set
+		 */
+		public void setLabel(String label) {
+			this.label = label;
+		}
+		/**
+		 * @return the explain
+		 */
+		public String getExplain() {
+			return explain;
+		}
+		/**
+		 * @param explain the explain to set
+		 */
+		public void setExplain(String explain) {
+			this.explain = explain;
+		}
+		/**
+		 * @param label
+		 * @param explain
+		 */
+		public SuggestedItem(String label, String explain) {
+			super();
+			this.label = label;
+			this.explain = explain;
+		}
+		
+	}
+	
+	public class CleanerSuggestionThread extends Thread {
+		
+	
+		
+		int id;
+		String query;
+		private List<String> suggestion;
+		private String[] explaination;
+
+		public CleanerSuggestionThread(List<String> suggestion,String[] explaination, String query,
+				 int id) throws IOException {
+			this.suggestion = suggestion;
+			this.explaination = explaination;
+			this.id = id;
+			this.query=query.replaceAll(" ", "+").toLowerCase();
+		}
+
+		public void run() {
+			logger.info("thread " + id + " start");
+			String candidateQuery = suggestion.get(id).replaceAll(" ", "+").toLowerCase();
+			String resultSnippet = null;
+			logger.debug("query {} candidate {}",query,candidateQuery);
+			try {
+				List<Result> res = GoogleQuery2Entity.getInstance().getResults("http://www.google.com/search?hl=en&source=hp&biw=887&bih=508&q="+query+"+"+candidateQuery+"+site:wikipedia.org");
+				if (res.size() == 0) suggestion.set(id, "");
+				else{
+					resultSnippet = res.get(0).getSummary().toLowerCase();
+				}
+			} catch (InterruptedException e) {
+				suggestion.set(id, "");
+		
+			}
+			boolean matchedInQuery = false;
+			boolean matchedInCandidateQuery = false;
+			for (String term : query.split("[+]")){
+				if (resultSnippet.contains(term)){
+					resultSnippet = resultSnippet.replaceAll(term,"<b>"+term+"</b>");
+					matchedInQuery = true;
+				}
+			}
+			for (String term : candidateQuery.split("[+]")){
+				if (resultSnippet.contains(term)){
+					resultSnippet= resultSnippet.replaceAll(term,"<b>"+term+"</b>");
+					matchedInCandidateQuery = true;
+				}
+			}
+			if (matchedInCandidateQuery && matchedInQuery) explaination[id] = resultSnippet;
+			else suggestion.set(id,"");
+		}
 	}
 }

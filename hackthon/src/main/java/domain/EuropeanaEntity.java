@@ -36,6 +36,7 @@ public class EuropeanaEntity implements Entity{
 	private String freebaseImage;
 	private List<String> europeanaImages;
 	private List<String> types;
+	private String explain;
 	
 	public EuropeanaEntity(){}
 	/**
@@ -166,6 +167,13 @@ public class EuropeanaEntity implements Entity{
 		Gson gson = new Gson();
 		String json = gson.toJson(this);
 		return json;
+	}
+	/**
+	 * @param explain
+	 */
+	public void setExplaination(String explain) {
+		this.explain = explain;
+		
 	}
 	
 	
