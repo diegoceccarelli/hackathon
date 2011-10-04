@@ -34,6 +34,8 @@ import org.w3c.dom.NodeList;
 import domain.Type;
 
 import util.EntityException;
+import util.KeyGenerator;
+import util.LRUCache;
 import util.NoResultException;
 import util.SuggestionProperties;
 
@@ -51,6 +53,9 @@ public class DbpediaMapper {
 	private final static String MAX_RESULT_PARAM = "MaxHits";
 	private final static String QUERY_STRING_PARAM = "QueryString";
 
+	private static KeyGenerator kg = KeyGenerator.getInstance();
+
+	private static LRUCache<Integer,Dbpedia> cache = new LRUCache<Integer,Dbpedia>(10000);
 	private String label;
 	private String description;
 	private String context;
@@ -81,6 +86,8 @@ public class DbpediaMapper {
 	}
 	
 	public static Dbpedia getInstanceFromQuery(String query) throws EntityException, NoResultException{
+		Integer key = kg.getKey(query);
+		if (cache.containsKey(key)) return cache.get(key);
 		DbpediaMapper dm = new DbpediaMapper();
 		dm.load(query);
 		List<Type> types = new ArrayList<Type>();
@@ -90,6 +97,7 @@ public class DbpediaMapper {
 			
 		}
 		Dbpedia obj = new Dbpedia(dm.getLabel(), dm.getDescription(),types);
+		cache.put(key,obj);
 		return obj;
 		
 	}

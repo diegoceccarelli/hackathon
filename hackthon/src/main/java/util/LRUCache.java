@@ -116,7 +116,7 @@ public class LRUCache<K, V> {
 	}
 	
 	
-	public boolean containsKey(String k){
+	public boolean containsKey(K k){
 		return map.containsKey(k);
 	}
 

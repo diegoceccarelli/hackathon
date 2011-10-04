@@ -21,6 +21,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import util.EntityException;
+import util.KeyGenerator;
+import util.LRUCache;
 import util.NoResultException;
 import util.SuggestionProperties;
 
@@ -43,8 +45,11 @@ import com.google.gson.Gson;
 public class FreebaseMapper{
 	/**
 	 * Logger for this class
+	 *
 	 */
 	private static final Logger logger = LoggerFactory.getLogger(FreebaseMapper.class);	
+	private static LRUCache<Integer,Freebase> cache = new LRUCache<Integer,Freebase>(10000);
+	private static KeyGenerator kg = KeyGenerator.getInstance();
 	
 	public boolean isLegal(){
 		return (result.size() > 1);
@@ -129,9 +134,13 @@ public class FreebaseMapper{
 	}
 	
 	public static Freebase getInstanceFromQuery(String query) throws IOException, EntityException, NoResultException {
+		Integer key = kg.getKey(query);
+		if (cache.containsKey(key)) return cache.get(key);
+		
 		String uri = SuggestionProperties.getInstance().getProperty(
 				"freebase.query.api");
 		uri += query;
+		
 		try {
 			uri = URIUtil.encodeQuery(uri);
 		} catch (URIException e) {
@@ -144,7 +153,9 @@ public class FreebaseMapper{
 
 			InputStream is = uc.getInputStream();
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
-			return parseFromJson(br);
+			Freebase fb =  parseFromJson(br);
+			cache.put(key, fb);
+			return fb;
 			
 		} catch (IOException e) {
 			throw new IOException("error retrieving the query from freebase");
