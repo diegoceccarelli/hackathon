@@ -15,12 +15,28 @@
  */
 package domain;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import domain.FreebaseMapper.Result.Type;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.apache.commons.httpclient.URIException;
+import org.apache.commons.httpclient.util.URIUtil;
+import org.apache.lucene.document.Document;
+
+import util.SuggestionProperties;
+
+import domain.Type;
 
 /**
  * @author Diego Ceccarelli <diego.ceccarelli@isti.cnr.it>
@@ -132,4 +148,5 @@ public class Freebase implements Entity {
 		this.types = types;
 	}
 
+	
 }

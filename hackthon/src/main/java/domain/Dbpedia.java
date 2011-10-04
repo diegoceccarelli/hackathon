@@ -15,10 +15,86 @@
  */
 package domain;
 
+import java.util.List;
+
+import domain.Type;
+
 /**
  * @author Diego Ceccarelli <diego.ceccarelli@isti.cnr.it>
  *
  */
 public class Dbpedia implements Entity {
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Dbpedia [label=" + label + ", uri=" + uri + ", description="
+				+ description + ", types=" + types + "]";
+	}
+	private String label;
+	private String uri;
+	private String description; 
+	private List<Type> types;
+	/**
+	 * @return the label
+	 */
+	public String getLabel() {
+		return label;
+	}
+	/**
+	 * @param label the label to set
+	 */
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	/**
+	 * @return the uri
+	 */
+	public String getUri() {
+		return uri;
+	}
+	/**
+	 * @param uri the uri to set
+	 */
+	public void setUri(String uri) {
+		this.uri = uri;
+	}
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	/**
+	 * @return the types
+	 */
+	public List<Type> getTypes() {
+		return types;
+	}
+	/**
+	 * @param types the types to set
+	 */
+	public void setTypes(List<Type> types) {
+		this.types = types;
+	}
+	/**
+	 * @param label
+	 * @param uri
+	 * @param description
+	 * @param types
+	 */
+	public Dbpedia(String label, String description, List<Type> types) {
+		super();
+		this.label = label;
+		this.description = description;
+		this.types = types;
+	}
 	
 }

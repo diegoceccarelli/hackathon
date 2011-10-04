@@ -31,6 +31,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -64,6 +65,41 @@ public class FreebaseMapper{
 		
 		
 		public class Type{
+			
+			
+			/**
+			 * @param id
+			 * @param name
+			 */
+			public Type(String id, String name) {
+				super();
+				this.id = id;
+				this.name = name;
+			}
+			/**
+			 * @return the id
+			 */
+			public String getId() {
+				return id;
+			}
+			/**
+			 * @param id the id to set
+			 */
+			public void setId(String id) {
+				this.id = id;
+			}
+			/**
+			 * @return the name
+			 */
+			public String getName() {
+				return name;
+			}
+			/**
+			 * @param name the name to set
+			 */
+			public void setName(String name) {
+				this.name = name;
+			}
 			String id;
 			String name;
 		}
@@ -81,7 +117,11 @@ public class FreebaseMapper{
 		
 		if (obj.isLegal()){
 			Result res = obj.result.get(0);
-			Freebase f = new Freebase(res.alias,res.name,res.guid,res.id,res.type);
+			List<domain.Type> types = new ArrayList<domain.Type>();
+			for (FreebaseMapper.Result.Type t : res.type){
+				types.add(new domain.Type(t.id, t.name));
+			}
+			Freebase f = new Freebase(res.alias,res.name,res.guid,res.id, types);
 			return f;
 		}
 
@@ -90,7 +130,7 @@ public class FreebaseMapper{
 	
 	public static Freebase getInstanceFromQuery(String query) throws IOException, EntityException, NoResultException {
 		String uri = SuggestionProperties.getInstance().getProperty(
-				"freebase_query_api");
+				"freebase.query.api");
 		uri += query;
 		try {
 			uri = URIUtil.encodeQuery(uri);
