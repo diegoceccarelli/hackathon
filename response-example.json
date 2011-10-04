@@ -1,0 +1,12 @@
+{
+	name: "Mona Lisa"
+ 	alias: ["La Gioconda", "La Joconde"]
+	dbpedia_label: "Mona Lisa"
+	dbpedia_uri: "http://dbpedia.org/resource/Mona_Lisa"
+	dbpedia_description: "Mona Lisa (also known as La Gioconda or La Joconde) is a sixteenth-century portrait painted in oil on a poplar panel by Leonardo di ser Piero da Vinci during the Renaissance in Florence, Italy. The work is currently owned by the Government of France and is on display at the Musée du Louvre in Paris under the title Portrait of Lisa Gherardini, wife of Francesco del Giocondo."
+	freebase_guid: "#9202a8c04000641f80000000000829c2"
+	freebase_id: "/en/mona_lisa"
+	freebase_image: { id: "/m/05bl7bb"}	
+	europeana_images: ["uri1", "uri2"]
+	types: ["Painting"]
+}

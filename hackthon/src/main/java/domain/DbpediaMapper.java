@@ -15,14 +15,31 @@
  */
 package domain;
 
+import org.apache.lucene.analysis.StopAnalyzer;
+import org.omg.CORBA.portable.InputStream;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
 
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+
+
 import org.slf4j.Logger;
+
+import ch.qos.logback.core.pattern.parser.Node;
+
+import util.EntityException;
 
 /**
  * @author Diego Ceccarelli <diego.ceccarelli@isti.cnr.it>
@@ -34,28 +51,16 @@ public class DbpediaMapper {
  */
 private static final Logger logger = LoggerFactory.getLogger(DbpediaMapper.class);
 
-		private static final float HASH_LOAD_FACTOR = 0.75f;
-		private static final int MAX_CACHE_SIZE = 100;
-		private static final int HASH_CAPACITY = (int) Math.ceil(MAX_CACHE_SIZE
-				/ HASH_LOAD_FACTOR) + 1;
-		private static Map<String, Entity> entityCache = new LinkedHashMap<String, Entity>(
-				HASH_CAPACITY, .75F, true) {
-			protected boolean removeEldestEntry(Map.Entry<String, Entity> eldest) {
-				return size() > MAX_CACHE_SIZE;
-			}
-		};
-
 
 		private final static String MAX_RESULT_PARAM = "MaxHits";
 		private final static String QUERY_STRING_PARAM = "QueryString";
 
-		private final static double SIMILARITY_THRESHOLD = 0.045d;
 
 		private String label;
 		private String description;
 		private String context;
-		private Set<String> terms;
 		private List<String> classes;
+
 
 		private static Set<String> termsToFilter;
 
@@ -67,18 +72,7 @@ private static final Logger logger = LoggerFactory.getLogger(DbpediaMapper.class
 					"free", "from", "makes", "more", "official", "site", "welcome",
 					"wiki", "wikipedia", "world" };
 			termsToFilter.addAll(Arrays.asList(toFilter));
-
-			try {
-				InputStream is = getClass().getResourceAsStream(
-						"/session-cleaner.properties");
-				properties.load(new InputStreamReader(is));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				logger
-						.debug("Cannot retrieve the session-clearner.properties file ");
 				return;
-			}
-			mapper = new GoogleQuery2Entity();
 		}
 
 		/**
@@ -102,48 +96,25 @@ private static final Logger logger = LoggerFactory.getLogger(DbpediaMapper.class
 			return label;
 		}
 
-		private static synchronized Entity getFromCache(String query) {
-			if (entityCache.containsKey(query)) {
-				logger.debug("Hit entity for query " + query);
-				return entityCache.get(query);
-			}
-			return null;
-		}
-
-		private static synchronized void pushInCache(String query, Entity e) {
-			entityCache.put(query, e);
-			return;
-		}
-
-		public boolean load(String _query) throws EntityException {
-			// FIXME refactoring
-			// try to clean the query and correct spelling errors
-			// using yahoo
-			_query = _query.trim();
-			Entity entity = getFromCache(_query);
+		
+		
+		public boolean load(String query) throws EntityException {
+			
 			boolean success = true;
-			if (entity != null) {
-				entity.clone(this);
-				return true;
-			}
+			
 			try{
 			Thread.sleep(400);
 			}catch(Exception e){
 			
 			}
-			String query = mapper.resolve(_query);
-
-			context = mapper.getContext();
-			logger.debug("context = " + context);
-			logger.debug("query resolved per " + _query + " = " + query);
-			String queryUrl = produceQueryUrl(query);
-
+			
+			
 			label = "";
 			description = "";
 
 			try {
 				Document response = DocumentBuilderFactory.newInstance()
-						.newDocumentBuilder().parse(queryUrl);
+						.newDocumentBuilder().parse(query);
 
 				if (response != null) {
 
@@ -178,33 +149,10 @@ private static final Logger logger = LoggerFactory.getLogger(DbpediaMapper.class
 					}
 					if (label.isEmpty()) {
 						success = false;
-						label = _query;
+						label = query;
 					}
-					terms = new HashSet<String>();
-					StringBuilder sb = new StringBuilder(label).append(" ");
-					sb.append(description).append(" ");
-					sb.append(context).append(" ");
-
-					// add all terms and classes to the set
-					tokenizer = new StandardTokenizer(Version.LUCENE_30,
-							new StringReader(sb.toString()));
-					tokenizer = new StopFilter(true, tokenizer, termsToFilter);
-					tokenizer = new LowerCaseFilter(tokenizer);
-					tokenizer = new LengthFilter(tokenizer, 4, 100);
-
-					TermAttribute ta = tokenizer.getAttribute(TermAttribute.class);
-
-					while (tokenizer.incrementToken()) {
-						terms.add(ta.term());
-					}
-					// not discriminant
-					if (classes != null) {
-						classes.remove("owl#Thing");
-						terms.addAll(classes);
-					}
-
-					pushInCache(_query, this);
-
+					
+					
 				}
 			} catch (Exception e) {
 				logger.error("Error during the mapping of the query " + query
