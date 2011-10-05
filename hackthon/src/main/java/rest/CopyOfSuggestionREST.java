@@ -15,11 +15,6 @@
  */
 package rest;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 
 import org.restlet.Server;
@@ -35,43 +30,24 @@ import api.Suggestion;
  * @author Diego Ceccarelli <diego.ceccarelli@isti.cnr.it>
  * 
  */
-public class SuggestionREST extends ServerResource {
+public class CopyOfSuggestionREST extends ServerResource {
 
 	public static void main(String[] args) throws Exception {
 		// Create the HTTP server and listen on port 8182
-		new Server(Protocol.HTTP, 8182, SuggestionREST.class).start();
+		new Server(Protocol.HTTP, 8182, CopyOfSuggestionREST.class).start();
 	}
 
 
 	
-	@Get()
-	public String suggest() throws IOException{
-		
-		
+	@Get("json")
+	public String suggest(){
 		String query = getQuery().getValues("query");
-		
-		StringBuilder sb = new StringBuilder();
-		String line = "";
-		InputStream is = this.getClass().getResourceAsStream("/start");
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-		while ( (line = br.readLine()) != null){
-			sb.append(line).append("\n");
-		}
-		sb.append("\nresult=[")
-		
-;		List<EuropeanaEntity> sugg = Suggestion.getInstance().getSuggestedEntities(query);
+		StringBuilder sb = new StringBuilder("[");
+		List<EuropeanaEntity> sugg = Suggestion.getInstance().getSuggestedEntities(query);
 		for (EuropeanaEntity ee : sugg){
 			sb.append(ee.toJson()).append(",");
 		}
-		sb.deleteCharAt(sb.length()-1).append("]\n");
-		
-		 is = this.getClass().getResourceAsStream("/second");
-		 br = new BufferedReader(new InputStreamReader(is));
-		while ( (line = br.readLine()) != null){
-			sb.append(line).append("\n");
-		}
-		
-		
+		sb.deleteCharAt(sb.length()-1).append("]");
 		return sb.toString();
 		
 	}

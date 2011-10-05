@@ -168,6 +168,12 @@ public class EuropeanaEntity implements Entity{
 		String json = gson.toJson(this);
 		return json;
 	}
+	
+	public static EuropeanaEntity fromJson(String json){
+		Gson gson = new Gson();
+		EuropeanaEntity ee = gson.fromJson(json, EuropeanaEntity.class);
+		return ee;
+	}
 	/**
 	 * @param explain
 	 */

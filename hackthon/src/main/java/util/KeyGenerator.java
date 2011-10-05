@@ -41,13 +41,13 @@ import org.apache.lucene.util.Version;
  *
  */
 public class KeyGenerator {
-	private static TokenStream tokenizer;
+	TokenStream tokenizer;
 	private static String[] toFilter = new String[] { "the", "la", "le" };
 	Set<String> termsToFilter;
 	
 	private static KeyGenerator kg;
 	
-	private KeyGenerator() {
+	public KeyGenerator() {
 		termsToFilter = new HashSet(Arrays.asList(toFilter));
 	}
 	

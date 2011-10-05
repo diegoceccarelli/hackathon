@@ -49,7 +49,7 @@ public class FreebaseMapper{
 	 */
 	private static final Logger logger = LoggerFactory.getLogger(FreebaseMapper.class);	
 	private static LRUCache<Integer,Freebase> cache = new LRUCache<Integer,Freebase>(10000);
-	private static KeyGenerator kg = KeyGenerator.getInstance();
+	//private static KeyGenerator kg = KeyGenerator.getInstance();
 	
 	public boolean isLegal(){
 		return (result.size() > 1);
@@ -134,6 +134,7 @@ public class FreebaseMapper{
 	}
 	
 	public static Freebase getInstanceFromQuery(String query) throws IOException, EntityException, NoResultException {
+		KeyGenerator kg = new KeyGenerator();
 		Integer key = kg.getKey(query);
 		if (cache.containsKey(key)) return cache.get(key);
 		

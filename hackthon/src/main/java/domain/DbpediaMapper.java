@@ -53,7 +53,7 @@ public class DbpediaMapper {
 	private final static String MAX_RESULT_PARAM = "MaxHits";
 	private final static String QUERY_STRING_PARAM = "QueryString";
 
-	private static KeyGenerator kg = KeyGenerator.getInstance();
+//	private static KeyGenerator kg = KeyGenerator.getInstance();
 
 	private static LRUCache<Integer,Dbpedia> cache = new LRUCache<Integer,Dbpedia>(10000);
 	private String label;
@@ -86,6 +86,8 @@ public class DbpediaMapper {
 	}
 	
 	public static Dbpedia getInstanceFromQuery(String query) throws EntityException, NoResultException{
+		KeyGenerator kg = new KeyGenerator();
+
 		Integer key = kg.getKey(query);
 		if (cache.containsKey(key)) return cache.get(key);
 		DbpediaMapper dm = new DbpediaMapper();
