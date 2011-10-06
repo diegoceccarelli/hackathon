@@ -178,8 +178,14 @@ public class EuropeanaEntity implements Entity{
 	 * @param explain
 	 */
 	public void setExplaination(String explain) {
+		String[] terms = explain.split("...");
+		explain = explain.replaceAll("..."+terms[1],"<a href='"+terms[1]+"'>link in wikipedia</a>");
 		this.explain = explain;
 		
+	}
+	
+	public String getExplaination(){
+		return explain;
 	}
 	
 	

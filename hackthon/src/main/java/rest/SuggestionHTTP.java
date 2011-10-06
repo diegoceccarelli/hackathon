@@ -63,8 +63,8 @@ public class SuggestionHTTP extends ServerResource {
 			while ( (line = br.readLine()) != null){
 				sb.append(line).append("\n");
 			}
-			sb.append("result=[")
-			
+			sb.append("result=[");
+			query = query.replaceAll("%20", "+");
 	;		List<EuropeanaEntity> sugg = Suggestion.getInstance().getSuggestedEntities(query);
 			for (EuropeanaEntity ee : sugg){
 				sb.append(ee.toJson()).append(",");
