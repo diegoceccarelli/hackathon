@@ -1,83 +1,69 @@
    
     var currentResult = result[0];
-    var url='mozart_europeana.json';
-                      var query;
-                      //freebase request
-                      var url2='mozart_freebase.json';//'opensearch2.json';//'http://www.freebase.com/experimental/topic/standard/en/leonardo_da_vinci';
+    var query;
+    //proxy php to get europeana results
+    var url='http://www.timelessfuture.com/apps/hackathon/proxy/proxy.php?proxy_url=';
+    /*not in use:*/
+    var url2='mozart_freebase.json';
+    /*end not in use*/
+    $('button').click(function(){
+            //create titles
+            clearResults();
+            $("#searchsuggestions").append('<br/>related searches:<br/><br/>');
+            $("#results").append('<br/><font size="4">results:</font><br/><br/>');
+            getJson();
+    });
                       
-                      $('button').click(function(){
-                      		      
-                      		      // $('#title').fadeIn(300);
-                      		      
+    function clearResults(){
+            $("#results").empty();
+            $("#searchsuggestions").empty();
+    }
+                      
+    function getJson() {
+	    query=document.getElementById('query').value;
+            /*query=$("#query").val();
+            $.getJSON(url+query,function(json){*/
 
-                      		      
-                      		      
-                      		      //create titles
-                      	      clearResults();
-                              $("#searchsuggestions").append('<br/>related searches:<br/><br/>');
-                              $("#results").append('<br/><font size="4">results:</font><br/><br/>');
-                              getJson();
-                      });
-                      
-                      function clearResults(){
-                      	      $("#results").empty();
-                      	      $("#searchsuggestions").empty();
-                      }
-                      
-                      function getJson() {
-                      	         /*query=$("#query").val();
-                                        $.getJSON(url+query,function(json){*/
-                                        //$.getJSON(url,function(json){
-                                        
-                                        var urls = [];
-                                        urls.push(url);
-                                        urls.push(url2);
-                                        $.each(urls, function (i, url) {
-                                        		//quick n dirty..
-                                        		
-                                        		//europeana search
-                                        		if(i==0){ 
-                                        			getEuropeanaJson(url);
-                                        		}
-                                        		if (i==1) {
-                                        			getFreebaseJson(url);
-                                        		}
-                                        });
+            //$.getJSON(url,function(json){
+
+                var urls = [];
+                urls.push(url);
+                urls.push(url2);
+                $.each(urls, function (i, url) {
+                    //quick n dirty..
+                    //europeana search
+                        if(i==0){ 
+                            getEuropeanaJson(url);
+                        }
+                        if (i==1) {
+                            getFreebaseJson(url);
+                        }
+            });
                       	      
-                      }
-                      
-
-                      
-                      
-                       function getFreebaseJson(url) {
-                      	      //$.getJSON(url, function (json) {
-                      	      		      var xSize=50;
-                      	      		      var ySize=50;
-                      	      		      $.each(result,function(i,item){
-                                            if(i<10) {
-                                                 $("#searchsuggestions").append('<a onmouseover="showSuggestionDescription(&#39'+item.name+'&#39,&#39'+item.explain+'&#39,&#39'+item.freebaseImage+'?maxwidth=170&#39);" onmouseout="showSuggestionDescription(&#39&#39);" href="http://api.europeana.eu/api/opensearch.json?wskey=IAVQBBDOQQ&searchTerms='+item.name+'"><img alt="'+item.name+' - '+item.dbpediaDescription+'" title="'+item.name+' - '+item.dbpediaDescription+'" src="'+item.freebaseImage+'" width="40" height="40" /></a>&nbsp;');  
+    }
+    
+    function getFreebaseJson(url) {
+                //$.getJSON(url, function (json) {
+                        var xSize=50;
+                        var ySize=50;
+                        $.each(result,function(i,item){
+                            if(i<10) {
+                                $("#searchsuggestions").append('<a onmouseover="showSuggestionDescription(&#39'+item.name+'&#39,&#39'+item.explain+'&#39,&#39'+item.freebaseImage+'?maxwidth=170&#39);" onmouseout="showSuggestionDescription(&#39&#39);" href="http://api.europeana.eu/api/opensearch.json?wskey=IAVQBBDOQQ&searchTerms='+item.name+'"><img alt="'+item.name+' - '+item.dbpediaDescription+'" title="'+item.name+' - '+item.dbpediaDescription+'" src="'+item.freebaseImage+'" width="40" height="40" /></a>&nbsp;');  
                       	      		      		      }
-                      	      		      });
-                      	      	$("#searchsuggestions").fadeIn(1000);	      
-                             //});   
-                      }
+                        });
+                        $("#searchsuggestions").fadeIn(1000);	      
+                //});   
+    }
                       
-                      
-                      
-                      
-                                        
-                      function getEuropeanaJson(url) {
-                      	      $.getJSON(url, function (json) {
-                      	      		      $.each(json.items,function(i,item){
-                      	      		      		      //$("#results").append('<table class="table_results"><tr><td width="80"><p><a href="'+item.link+'"><img src="'+item.enclosure+'" width="70" height="70" /></a></td><td valign="middle" width="400"><a>'+item.title+'</a></td><td valign="middle">'+item.description+'</td></tr></p></table>');  
-                      	      		      		      $("#results").append('<table class="table_results"><tr><td width="80"><a href="'+item.enclosure+'"><img src="'+item.enclosure+'" title="'+item.description+'" align="left" width="70" height="70" /></td><td valign="middle" width="400"><a href="http://www.europeana.eu/resolve/record/'+((item.link).substring(38)).split(".")[0]+'" title="'+item.description+'">'+(item.title).substring(0, 100)+'</a></td></tr></table>');  
-
-                      	      		      });
+    function getEuropeanaJson(url) {
+                $.getJSON(url+query, function (json) {
+                        $.each(json.items,function(i,item){ 
+                                $("#results").append('<table class="table_results"><tr><td width="80"><a href="'+item.enclosure+'"><img src="'+item.enclosure+'" title="'+item.description+'" align="left" width="70" height="70" /></td><td valign="middle" width="400"><a href="http://www.europeana.eu/resolve/record/'+((item.link).substring(38)).split(".")[0]+'" title="'+item.description+'">'+(item.title).substring(0, 100)+'</a></td></tr></table>');  
+                        });
 			      });
 			     
 
-                      }
-                     // $("#results").append('</table>');
+    }
                       
     });
     </script>
