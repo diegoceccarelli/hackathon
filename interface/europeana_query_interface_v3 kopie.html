@@ -1,0 +1,176 @@
+
+<style type="text/css">
+    
+    body{font-family:"Arial", sans-serif;
+        font-size: 10pt;
+text-align:center;
+    
+    } 
+    
+    /*related searches image mouseover behavior*/
+    img.relatedsearches
+    {
+        opacity:0.4;
+        filter:alpha(opacity=40); /* For IE8 and earlier */
+        
+        
+        
+    }
+    img.relatedsearches:hover
+    {
+        opacity:1.0;
+        filter:alpha(opacity=100); /* For IE8 and earlier */
+    }
+    
+    img.logo {
+    	     opacity:.9;
+    	         display: block;
+    margin-left: auto;
+    margin-right: auto
+    }
+    
+    table.table_results {
+    	    width: 600;
+    	    text-align:right;
+    	    margin-left: auto;
+    	    margin-right:auto;
+    }
+    
+    
+    /*general image mouseover behavior*/
+    img
+    {
+        opacity:0.8;
+        filter:alpha(opacity=80); /* For IE8 and earlier */
+        background-color:#fff;
+        border-width:0px;
+        border-style:solid;
+        border-bottom-color:#aaa;
+        border-right-color:#aaa;
+        border-top-color:#ddd;
+        border-left-color:#ddd;
+        border-radius:3px;
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+    }
+    img:hover
+    {
+        opacity:1.0;
+        filter:alpha(opacity=100); /* For IE8 and earlier */
+    }
+    
+    a {text-decoration:none;} 
+    
+    </style>
+
+<!-- title -->
+<div id="title" >
+<img class="logo" src="europeana_logo.jpg"/><br/>
+</div>
+    
+<!-- search box-->
+<input class="search" align="center" type="text" id="query" value="mozart" /><button>search</button><br />
+
+<!-- area for search suggestions-->
+<div id="searchsuggestions">
+</div>
+    
+<!-- area for search results -->
+<div id="results">
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    		        $("#searchsuggestions").hide();
+    		        $("#title").hide();
+    		        $("#title").fadeIn(1000);
+                      	  
+
+					result =
+					[{"name":"Guernica","alias":[],"dbpediaLabel":"Guernica (painting)","dbpediaDescription":"guernica is a painting by pablo picasso, in response to the bombing of guernica, basque country, by german and italian warplanes at the behest of the spanish nationalist forces, on 26 april 1937, during the spanish civil war. the spanish republican government commissioned pablo picasso to create a large mural for the spanish display at the exposition internationale des arts et techniques dans la vie moderne (1937) paris international exposition in the 1937 world\u0027s fair in paris.","freebaseGuid":"#9202a8c04000641f8000000000410645","freebaseId":"/en/guernica","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f8000000000410645","types":[],"explain":"\u003cb\u003eguernica\u003c/b\u003e is a painting by pablo \u003cb\u003epicasso\u003c/b\u003e. it was created in response to the   bombing of \u003cb\u003eguernica\u003c/b\u003e, basque country, by german and italian warplanes at the   behest ...en.wikipedia.org/wiki/\u003cb\u003eguernica\u003c/b\u003e_(painting) - "},{"name":"Pablo Picasso","alias":["Picasso","Picaso"],"dbpediaLabel":"Pablo Picasso","dbpediaDescription":"pablo diego josé francisco de paula juan nepomuceno maría de los remedios cipriano de la santísima trinidad ruiz y picasso known as pablo ruiz picasso (25 october 1881 – 8 april 1973) was a spanish painter, draughtsman, and sculptor who lived most of his adult life in france. he is best known for co-founding the cubist movement and for the wide variety of styles embodied in his work.","freebaseGuid":"#9202a8c04000641f80000000000303e7","freebaseId":"/en/pablo_picasso","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f80000000000303e7","types":["Artist"],"explain":"\u003cb\u003e\u003cb\u003epicasso\u003c/b\u003e\u003c/b\u003e was baptized \u003cb\u003epablo\u003c/b\u003e diego jos√© francisco de paula juan nepomuceno   mar√≠a de los remedios crispiniano de la sant√≠sima trinidad, a series of names ...en.wikipedia.org/wiki/\u003cb\u003epablo\u003c/b\u003e_\u003cb\u003e\u003cb\u003epicasso\u003c/b\u003e\u003c/b\u003e - "},{"name":"Kingdom of Dali","alias":[],"dbpediaLabel":"Kingdom of Dali","dbpediaDescription":"dali was a bai kingdom centred in what is now yunnan province of china. established by duan siping in 937, it was ruled by a succession of 22 kings until the year 1253, when it was conquered by an invasion of the mongol empire. the capital city was at dali.","freebaseGuid":"#9202a8c04000641f80000000004557ab","freebaseId":"/en/kingdom_of_dali","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f80000000004557ab","types":[],"explain":"2.1 1965‚äì1975: modelling, swinging london and life with dal√≠; 2.2 1975‚äì1983:   .... by minor label creole records in the united \u003cb\u003ekingdom\u003c/b\u003e, but without success. ....   paloma (\u003cb\u003epicasso\u003c/b\u003e) etc., according to her biography my life with dal√≠ all \u003cb\u003eof\u003c/b\u003e them if ...en.wikipedia.org/wiki/amanda_lear - "},{"name":"La Gioconda","alias":[],"dbpediaLabel":"La Gioconda (opera)","dbpediaDescription":"la gioconda is an opera in four acts by amilcare ponchielli to an italian libretto by arrigo boito, based on angelo, tyran de padoue, a play in prose by victor hugo, dating from 1835. first performed in 1876, la gioconda was a major success for ponchielli, as well as the most successful new italian opera between verdi\u0027s aida (1871) and otello (1887). it is also a famous example of the italian genre of grande opera, the equivalent of french grand-opéra.","freebaseGuid":"#9202a8c04000641f8000000000633cc2","freebaseId":"/en/la_gioconda","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f8000000000633cc2","types":[],"explain":"para \u003cb\u003ela\u003c/b\u003e √≥pera de amilcare ponchielli, v√©ase \u003cb\u003ela\u003c/b\u003e \u003cb\u003egioconda\u003c/b\u003e (√≥pera) .....   posteriormente, fue capturado el pintor pablo \u003cb\u003epicasso\u003c/b\u003e, debido a que ten√≠a   antecedentes ...es.wikipedia.org/wiki/\u003cb\u003ela\u003c/b\u003e_\u003cb\u003egioconda\u003c/b\u003e - "},{"name":"Barcelona","alias":["Barna","Barcelona, Spain","Barcelone"],"dbpediaLabel":"Barcelona","dbpediaDescription":"barcelona is the capital and the most populous city of the autonomous community of catalonia and the second largest city in spain, after madrid, with a population of 1,621,537 within its administrative limits on a land area of 101.4 km (39 sq mi).","freebaseGuid":"#9202a8c04000641f800000000000b4c2","freebaseId":"/en/barcelona","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f800000000000b4c2","types":[],"explain":"the museu \u003cb\u003epicasso\u003c/b\u003e (catalan pronunciation: [muààz…õw piààkasu], \u0026quot;\u003cb\u003epicasso\u003c/b\u003e   museum\u0026quot;) in \u003cb\u003ebarcelona\u003c/b\u003e, spain, has one of the most extensive collections of   artworks ...en.wikipedia.org/wiki/museu_\u003cb\u003epicasso\u003c/b\u003e - "},{"name":"Salvador Dalí","alias":["Salvador Dali","Dali","Salvador Dal","Salvador Dalí"],"dbpediaLabel":"The Death of Salvador Dali","dbpediaDescription":"the death of salvador dalí is a short film written and directed by delaney bishop. the plot of this fantasy film involves salvador dalí consulting sigmund freud on how to depict madness in his artwork.","freebaseGuid":"#9202a8c04000641f800000000004ff94","freebaseId":"/en/salvador_dali","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f800000000004ff94","types":[],"explain":"\u003cb\u003epicasso\u003c/b\u003e demonstrated extraordinary artistic talent in his early years, painting in a   realistic manner ..... de el greco a \u003cb\u003esalvador\u003c/b\u003e dal√≠, pasando por \u003cb\u003epicasso\u003c/b\u003e\u0026#39;,\u0026quot;. ...en.wikipedia.org/wiki/pablo_\u003cb\u003epicasso\u003c/b\u003e - "},{"name":"Egon Schiele","alias":[],"dbpediaLabel":"Egon Schiele","dbpediaDescription":"egon schiele (approximately shee-leh; june 12, 1890 \u0026ndash; october 31, 1918) was an austrian painter. a protégé of gustav klimt, schiele was a major figurative painter of the early 20th century. schiele\u0027s work is noted for its intensity, and the many self-portraits the artist produced.","freebaseGuid":"#9202a8c04000641f80000000000634c5","freebaseId":"/en/egon_schiele","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f80000000000634c5","types":["Artist"],"explain":"the many self-portraits of \u003cb\u003eegon\u003c/b\u003e \u003cb\u003eschiele\u003c/b\u003e set new standards of openness, or   perhaps ... from the young unknown \u0026quot;yo \u003cb\u003epicasso\u003c/b\u003e\u0026quot; period to the \u0026quot;minotaur in the ...en.wikipedia.org/wiki/self-portrait - "},{"name":"Joconde","alias":[],"dbpediaLabel":"Joconde","dbpediaDescription":"joconde is the central database, now mostly available online, for objects in the collections of the state museums of france, maintained by the french ministry of culture. \"la joconde\" is the french name of the mona lisa, which like almost all the collections of the louvre, is included in the database, as one of 295 items by, after, or connected with leonardo da vinci.","freebaseGuid":"#9202a8c04000641f800000000aa362cd","freebaseId":"/en/joconde","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f800000000aa362cd","types":[],"explain":"la \u003cb\u003ejoconde\u003c/b\u003e, ou portrait de mona lisa, est un tableau de l√©onard de vinci, ... √†   dix ans de r√©clusion) et soup√ßonne le peintre pablo \u003cb\u003epicasso\u003c/b\u003e qui est longuement ...fr.wikipedia.org/wiki/la_\u003cb\u003ejoconde\u003c/b\u003e - "},{"name":"Museo del Prado","alias":["Prado Museum"],"dbpediaLabel":"Museo del Prado","dbpediaDescription":"the museo del prado is a museum and art gallery located in madrid, the capital of spain. it features one of the world\u0027s finest collections of european art, from the 12th century to the early 19th century, based on the former spanish royal collection. founded as a museum of paintings and sculpture, it also contains important collections of more than 5,000 drawings, 2,000 prints, 1,000 coins and medals, and almost 2,000 decorative objects and works of art.","freebaseGuid":"#9202a8c04000641f800000000017cac3","freebaseId":"/en/museo_del_prado","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f800000000017cac3","types":[],"explain":"the \u003cb\u003emuseo\u003c/b\u003e \u003cb\u003edel\u003c/b\u003e \u003cb\u003eprado\u003c/b\u003e is the main spanish national art museum, located in .... but   pablo \u003cb\u003epicasso\u003c/b\u003e\u0026#39;s famous painting guernica was exhibited in the \u003cb\u003eprado\u003c/b\u003e for some ...en.wikipedia.org/wiki/\u003cb\u003emuseo\u003c/b\u003e_\u003cb\u003edel\u003c/b\u003e_\u003cb\u003eprado\u003c/b\u003e - "},{"name":"Video Game","alias":["Video game","Videogame","Computer game"],"dbpediaLabel":"Video game","dbpediaDescription":"a video game is an electronic game that involves interaction with a user interface to generate visual feedback on a video device. the word video in video game traditionally referred to a raster display device. however, with the popular use of the term \"video game,\" it now implies any type of display device. the electronic systems used to play video games are known as platforms; examples of these are personal computers and video game consoles.","freebaseGuid":"#9202a8c04000641f80000000041e9a6d","freebaseId":"/cvg/computer_videogame","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f80000000041e9a6d","types":[],"explain":"curio tries to be cool like nitro in order to fit in. 14, \u0026quot;the \u003cb\u003evideo\u003c/b\u003e \u003cb\u003egame\u003c/b\u003e\u0026quot;, 7 may   2009 (2009-05-07). curio, \u003cb\u003epicasso\u003c/b\u003e and nitro become obsessed with a \u003cb\u003evideo\u003c/b\u003e   \u003cb\u003egame\u003c/b\u003e ...en.wikipedia.org/wiki/the_shak_at_home - "},{"name":"Rembrandt","alias":["Rembrandt Harmenszoon van Rijn"],"dbpediaLabel":"Rembrandt","dbpediaDescription":"rembrandt harmenszoon van rijn (july 15, 1606 – october 4, 1669) was a dutch painter and etcher. he is generally considered one of the greatest painters and printmakers in european art history and the most important in dutch history. his contributions to art came in a period that historians call the dutch golden age. having achieved youthful success as a portrait painter, his later years were marked by personal tragedy and financial hardships.","freebaseGuid":"#9202a8c04000641f8000000000ac4742","freebaseId":"/en/rembrandt","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f8000000000ac4742","types":["Artist"],"explain":"in the 17th century, \u003cb\u003erembrandt\u003c/b\u003e painted a range of self-portraits. ..... from the   young unknown \u0026quot;yo \u003cb\u003epicasso\u003c/b\u003e\u0026quot; period to the \u0026quot;minotaur in the labyrinth\u0026quot; period, to   the ...en.wikipedia.org/wiki/self-portrait - "},{"name":"Albert Camus","alias":["Camus, Albert"],"dbpediaLabel":"Albert Camus","dbpediaDescription":"albert camus (7 november 1913 – 4 january 1960) was a french algerian author, philosopher and journalist, who was awarded the nobel prize for literature in 1957. he was a key philosopher of the 20th-century, with his most famous work being the novel l\u0027étranger. in 1949, camus founded the group for international liaisons within the revolutionary union movement, which was opposed to some tendencies of the surrealist movement of andré breton.","freebaseGuid":"#9202a8c04000641f800000000000497c","freebaseId":"/en/albert_camus","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f800000000000497c","types":[],"explain":"written by, pablo \u003cb\u003epicasso\u003c/b\u003e. characters, big ... desire caught by the tail is farcical   play written by the painter pablo \u003cb\u003epicasso\u003c/b\u003e. ... \u003cb\u003ealbert\u003c/b\u003e \u003cb\u003ecamus\u003c/b\u003e directed the piece. ...en.wikipedia.org/wiki/desire_caught_by_the_tail - "},{"dbpediaLabel":"Frédéric Chopin","dbpediaDescription":"frédéric françois chopin, in polish fryderyk franciszek chopin (in english; 1 march 1810 \u0026ndash; 17 october 1849) was a polish composer, virtuoso pianist, and music teacher of french-polish parentage. he was one of the great masters of romantic music. chopin was born in żelazowa wola, a village in the duchy of warsaw. a renowned child-prodigy pianist and composer, he grew up in warsaw and completed his musical education there.","types":[],"explain":"6.1 leon bakst; 6.2 pablo \u003cb\u003epicasso\u003c/b\u003e; 6.3 natalia goncharova .... that same year he   created \u003cb\u003echopin\u003c/b\u003eiana, a piece to music by the composer fr√©d√©ric \u003cb\u003echopin\u003c/b\u003e. ...en.wikipedia.org/wiki/ballets_russes - "},{"name":"Gustav Klimt","alias":[],"dbpediaLabel":"Gustav Klimt","dbpediaDescription":"gustav klimt (july 14, 1862 – february 6, 1918) was an austrian symbolist painter and one of the most prominent members of the vienna secession movement. his major works include paintings, murals, sketches, and other art objects. klimt\u0027s primary subject was the female body, and his works are marked by a frank eroticism—nowhere is this more apparent than in his numerous drawings in pencil (see mulher sentada, below).","freebaseGuid":"#9202a8c04000641f800000000001a0c9","freebaseId":"/en/gustav_klimt","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f800000000001a0c9","types":["Artist"],"explain":"1 background; 2 van gogh and \u003cb\u003epicasso\u003c/b\u003e; 3 list of highest prices paid at .... $98.5,   $87.9, portrait of adele bloch-bauer ii, \u003cb\u003egustav\u003c/b\u003e \u003cb\u003eklimt\u003c/b\u003e, 1912, 2006-11-02, 9 ...en.wikipedia.org/wiki/list_of_most_expensive_paintings - "},{"name":"William Shakespeare","alias":["Shakspere","Shaksper","Shaxper","Shake-speare","Bard of Avon","The Bard","Shakespeare","Wm Shakespeare"],"dbpediaLabel":"William Shakespeare","dbpediaDescription":"william shakespeare (baptised 26 april 1564; died 23 april 1616) was an english poet and playwright, widely regarded as the greatest writer in the english language and the world\u0027s pre-eminent dramatist. he is often called england\u0027s national poet and the \"bard of avon\". his surviving works, including some collaborations, consist of about 38 plays, 154 sonnets, two long narrative poems, and several other poems.","freebaseGuid":"#9202a8c04000641f8000000000040628","freebaseId":"/en/william_shakespeare","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f8000000000040628","types":["Artist"],"explain":"in 1964, for the 400th anniversary of \u003cb\u003eshakespeare\u003c/b\u003e\u0026#39;s birth, pablo \u003cb\u003epicasso\u003c/b\u003e created   numerous variations on the theme of \u003cb\u003eshakespeare\u003c/b\u003e\u0026#39;s face reduced to minimal ...en.wikipedia.org/wiki/portraits_of_\u003cb\u003eshakespeare\u003c/b\u003e - "},{"name":"Denis Diderot","alias":[],"dbpediaLabel":"Denis Diderot","dbpediaDescription":"denis diderot (october 5, 1713 – july 31, 1784) was a french philosopher, art critic, and writer. he was a prominent figure during the enlightenment and is best-known for serving as co-founder and chief editor of and contributor to the encyclopédie.","freebaseGuid":"#9202a8c04000641f8000000000012393","freebaseId":"/en/denis_diderot","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f8000000000012393","types":[],"explain":"... the rococo era jean-baptiste greuze (the favorite painter of \u003cb\u003edenis\u003c/b\u003e \u003cb\u003ediderot\u003c/b\u003e), ....   pablo \u003cb\u003epicasso\u003c/b\u003e made his first cubist paintings based on c√©zanne\u0026#39;s idea that all ...en.wikipedia.org/wiki/western_painting - "},{"name":"England","alias":["England, Inc","england","eng"],"dbpediaLabel":"England","dbpediaDescription":"england is a country that is part of the united kingdom. it shares land borders with scotland to the north and wales to the west; the irish sea is to the north west, the celtic sea to the south west and the north sea to the east, with the english channel to the south separating it from continental europe. most of england comprises the central and southern part of the island of great britain in the north atlantic.","freebaseGuid":"#9202a8c04000641f8000000000014381","freebaseId":"/en/england","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f8000000000014381","types":[],"explain":"it was popularised by pablo \u003cb\u003epicasso\u003c/b\u003e in 1949 and became widely used in the .....   to the atomic weapons research establishment at aldermaston in \u003cb\u003eengland\u003c/b\u003e, ...en.wikipedia.org/wiki/peace_symbols - "},{"name":"Faust","alias":["Faust"],"dbpediaLabel":"Faust (opera)","dbpediaDescription":"faust is a grand opera in five acts by charles gounod to a french libretto by jules barbier and michel carré from carré\u0027s play faust et marguerite, in turn loosely based on johann wolfgang von goethe\u0027s faust, part 1. it debuted at the théâtre lyrique (théâtre-historique, opèra-national, boulevard du temple) in paris on march 19, 1859.","freebaseGuid":"#9202a8c04000641f8000000000173dff","freebaseId":"/en/faust","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f8000000000173dff","types":[],"explain":"1957 : esquelet de don joan; 1972 : homenatge a \u003cb\u003epicasso\u003c/b\u003e; 1977 : teatre; 1978   ... 1991 : l\u0026#39;alfa romeo i julieta, i altres contes, precedit per aparici√≥ de \u003cb\u003efaust\u003c/b\u003e ...en.wikipedia.org/wiki/josep_palau_i_fabre - "},{"name":"Architecture","alias":[],"dbpediaLabel":"Architecture","dbpediaDescription":"architecture can mean: the art and science of designing and erecting buildings and other physical structures. the practice of an architect, where architecture means to offer or render professional services in connection with the design and construction of a building, or group of buildings and the space within the site surrounding the buildings, that have as their principal purpose human occupancy or use. a general term to describe buildings and other structures.","freebaseGuid":"#9202a8c04000641f8000000003c94278","freebaseId":"/architecture","freebaseImage":"http://api.freebase.com/api/trans/image_thumb/guid/9202a8c04000641f8000000003c94278","types":[],"explain":"artists such as paul gauguin, henri matisse, and pablo \u003cb\u003epicasso\u003c/b\u003e were .... their   own work in all branches of artistic creativity‚äîespecially painting and   \u003cb\u003earchitecture\u003c/b\u003e. ...en.wikipedia.org/wiki/cubism - "}]
+                      //europeana request
+                      var url='mozart_europeana.json';
+                      var query;
+                      //freebase request
+                      var url2='mozart_freebase.json';//'opensearch2.json';//'http://www.freebase.com/experimental/topic/standard/en/leonardo_da_vinci';
+                      
+                      $('button').click(function(){
+                      		      
+                      		      // $('#title').fadeIn(300);
+                      		      
+
+                      		      
+                      		      
+                      		      //create titles
+                      	      clearResults();
+                              $("#searchsuggestions").append('<br/>related searches:<br/><br/>');
+                              $("#results").append('<br/><font size="4">results:</font><br/><br/>');
+                              getJson();
+                      });
+                      
+                      function clearResults(){
+                      	      $("#results").empty();
+                      	      $("#searchsuggestions").empty();
+                      }
+                      
+                      function getJson() {
+                      	         /*query=$("#query").val();
+                                        $.getJSON(url+query,function(json){*/
+                                        //$.getJSON(url,function(json){
+                                        
+                                        var urls = [];
+                                        urls.push(url);
+                                        urls.push(url2);
+                                        $.each(urls, function (i, url) {
+                                        		//quick n dirty..
+                                        		
+                                        		//europeana search
+                                        		if(i==0){ 
+                                        			getEuropeanaJson(url);
+                                        		}
+                                        		if (i==1) {
+                                        			getFreebaseJson(url);
+                                        		}
+                                        });
+                      	      
+                      }
+                      
+                      function getFreebaseJson(url) {
+                      	      // $.getJSON(url, function (json) {
+                      	      var xSize=50;
+                      	      var ySize=50;
+                      	      $.each(result,function(i,item){	      		      
+                      	      	if(i<10) {
+                      	      	
+                      	      		$("#searchsuggestions").append('<a href="http://api.europeana.eu/api/opensearch.json?wskey=IAVQBBDOQQ&searchTerms='+item.name+'"><img alt="'+item.name+' - '+item.dbpediaDescription+'" title="'+item.name+' - '+item.explain+'" src="'+item.freebaseImage+'" width="40" height="40" /></a>&nbsp;');  
+                      	      		     	if(xSize >4) 
+												{xSize = ySize -=3;}
+                      	      		      }
+                      	      		      	   		      		      
+     
+                      	      	});	      		      
+                      	      		      
+                      	      		      
+                      	      		      	    	       
+                      	      		      
+                      	      	$("#searchsuggestions").fadeIn(1000);	      
+				};   
+			    //  $("#searchsuggestions").append('</table>');
+                      //}
+                                        
+                      function getEuropeanaJson(url) {
+                      	      $.getJSON(url, function (json) {
+                      	      		      $.each(json.items,function(i,item){
+                      	      		      		      //$("#results").append('<table class="table_results"><tr><td width="80"><p><a href="'+item.link+'"><img src="'+item.enclosure+'" width="70" height="70" /></a></td><td valign="middle" width="400"><a>'+item.title+'</a></td><td valign="middle">'+item.description+'</td></tr></p></table>');  
+                      	      		      		      $("#results").append('<table class="table_results"><tr><td width="80"><a href="'+item.enclosure+'"><img src="'+item.enclosure+'" title="'+item.description+'" align="left" width="70" height="70" /></td><td valign="middle" width="400"><a href="http://www.europeana.eu/resolve/record/'+((item.link).substring(38)).split(".")[0]+'" title="'+item.description+'">'+(item.title).substring(0, 100)+'</a></td></tr></table>');  
+
+                      	      		      });
+			      });
+			     
+
+                      }
+                     // $("#results").append('</table>');
+                      
+    });
+    </script>
