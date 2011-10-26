@@ -250,8 +250,7 @@
                       	      var ySize=50;
                       	      $.each(json,function(i,item){	      		      
                       	      	if(i<10) {
-                      	      	/*dbpediaDescription --> item.explain*/
-                                     $("#searchsuggestions").append('<a onmouseover="showSuggestionDescription(&#39'+item.name+'&#39,&#39'+item.dbpediaDescription.substr(0,300)+'&#39,&#39'+item.freebaseImage+'?maxwidth=170&#39);" onmouseout="showSuggestionDescription(&#39&#39);" href="http://api.europeana.eu/api/opensearch.json?wskey=IAVQBBDOQQ&searchTerms='+item.name+'"><img alt="'+item.name+' - '+item.dbpediaDescription+'" title="'+item.name+' - '+item.dbpediaDescription+'" src="'+item.freebaseImage+'" width="40" height="40" /></a>&nbsp;');  
+                                     $("#searchsuggestions").append('<a onmouseover="showSuggestionDescription(&#39'+item.name+'&#39,&#39'+item.explain.substr(0,300)+'&#39,&#39'+item.freebaseImage+'?maxwidth=170&#39);" onmouseout="showSuggestionDescription(&#39&#39);" href="http://api.europeana.eu/api/opensearch.json?wskey=IAVQBBDOQQ&searchTerms='+item.name+'"><img alt="'+item.name+' - '+item.dbpediaDescription+'" title="'+item.name+' - '+item.dbpediaDescription+'" src="'+item.freebaseImage+'" width="40" height="40" /></a>&nbsp;');  
                                      }
                       	      		      	   		      		      
      
