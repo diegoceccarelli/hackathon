@@ -1,0 +1,6 @@
+=== How to execute === 
+in the folder hackathon/hackathon 
+run "mvn jetty:run"
+
+the service will be available at the url http://localhost:8080/hackthon/
+
